@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: 'node',
-  testMatch: ['**/tests/**/*.test.js'], // This tells Jest to look in the 'tests' folder we will make later
+  testMatch: ['**/tests/**/*.test.js'],
   collectCoverage: true,
   collectCoverageFrom: [
     'utils/KleavenUtil.js', 
@@ -9,7 +9,7 @@ module.exports = {
   coverageDirectory: 'coverage/backend',
   coverageReporters: ['text', 'html'],
   
-  // THIS IS THE "ADDITIONAL FEATURE" (Lab 8)
+  // FEATURE 1: Backend Quality Gate (Code Coverage)
   coverageThreshold: {
     global: {
       branches: 50,
@@ -18,4 +18,9 @@ module.exports = {
       statements: 50,
     },
   },
+
+  // FEATURE 2: Performance Gate (Latency Limit)
+  // Fails any test that takes longer than 2000ms (2 seconds) to catch performance issues
+  testTimeout: 2000,
+  verbose: true
 };

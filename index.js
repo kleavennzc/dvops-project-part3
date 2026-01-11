@@ -7,7 +7,7 @@ const startPage = 'index.html';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// CHANGED: USE ABSOLUTE STATIC PATH FOR RELIABILITY
+// ABSOLUTE STATIC PATH FOR RELIABILITY
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MULTER IMAGE UPLOAD SETUP
