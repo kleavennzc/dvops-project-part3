@@ -53,11 +53,11 @@ pipeline {
         }
         success {
             mail bcc: '', 
-                 body: " Good news! The pipeline for DevOps Bloggers has completed successfully.\n\nYour app is now live on Minikube.\n\nBuild Number: ${env.BUILD_NUMBER}\nProject: ${env.JOB_NAME}", 
+                 body: " Email sent successfully!", 
                  cc: '', 
                  from: '', 
                  replyTo: '', 
-                 subject: "SUCCESS: DevOps Blog Build #${env.BUILD_NUMBER}", 
+                 subject: "email testing", 
                  to: "${USER_EMAIL}"
         }
         failure {
