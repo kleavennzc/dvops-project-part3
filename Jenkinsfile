@@ -2,8 +2,6 @@ pipeline {
     agent any
 
     environment {
-        //Docker Hub username.
-       
         IMAGE_NAME = "kleaven-blog-app"
     }
 
@@ -25,18 +23,22 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker Image...'
-                // builds the container  
                 bat 'docker build -t %IMAGE_NAME% .'
             }
         }
+
         stage('Deploy to Minikube') {
             steps {
                 echo 'Deploying to Kubernetes...'
                 
+                
+                bat 'minikube image load %IMAGE_NAME%'
+                
+               
                 bat 'kubectl --kubeconfig=./kubeconfig apply -f kubernetes/deployment.yaml --validate=false'
                 bat 'kubectl --kubeconfig=./kubeconfig apply -f kubernetes/service.yaml --validate=false'
                 
-                // Force a restart so the new image is used
+                // Force a restart so the new image is actually used
                 bat 'kubectl --kubeconfig=./kubeconfig rollout restart deployment/kleaven-blog-deployment'
             }
         }
