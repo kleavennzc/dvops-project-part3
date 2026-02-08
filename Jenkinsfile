@@ -29,5 +29,16 @@ pipeline {
                 bat 'docker build -t %IMAGE_NAME% .'
             }
         }
+        stage('Deploy to Minikube') {
+            steps {
+                echo 'Deploying to Kubernetes...'
+                // Apply the configurations
+                bat 'kubectl apply -f kubernetes/deployment.yaml'
+                bat 'kubectl apply -f kubernetes/service.yaml'
+                
+                // Force a restart so it will pick up the new image
+                bat 'kubectl rollout restart deployment/kleaven-blog-deployment'
+            }
+        }
     }
 }

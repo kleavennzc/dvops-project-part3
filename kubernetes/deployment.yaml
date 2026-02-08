@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kleaven-blog-deployment
+  labels:
+    app: kleaven-blog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kleaven-blog
+  template:
+    metadata:
+      labels:
+        app: kleaven-blog
+    spec:
+      containers:
+      - name: kleaven-blog-container
+        image: kleaven-blog-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5050
