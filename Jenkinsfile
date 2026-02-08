@@ -53,16 +53,16 @@ pipeline {
         }
         success {
             mail bcc: '', 
-                 body: " Email sent successfully!", 
+                 body: " The pipeline for DevOps Bloggers has completed successfully.\nProject: ${env.JOB_NAME}", 
                  cc: '', 
                  from: '', 
                  replyTo: '', 
-                 subject: "email testing", 
+                 subject: "SUCCESS: DevOps Blog Build #${env.BUILD_NUMBER}", 
                  to: "${USER_EMAIL}"
         }
         failure {
             mail bcc: '', 
-                 body: " Alert! The pipeline for DevOps Bloggers has FAILED.\n\nPlease check the Jenkins Console Output to debug the error.\n\nBuild Number: ${env.BUILD_NUMBER}\nProject: ${env.JOB_NAME}", 
+                 body: " The pipeline for DevOps Bloggers has FAILED.\n\ncheck the Jenkins Console Output to debug the error.\nProject: ${env.JOB_NAME}", 
                  cc: '', 
                  from: '', 
                  replyTo: '', 
