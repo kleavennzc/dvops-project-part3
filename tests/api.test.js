@@ -3,12 +3,16 @@ const { app, server } = require('../index');
 
 // Close server after tests
 afterAll((done) => {
-  server.close(done);
+  // FIXED: Only close the server if it is actually running
+  if (server) {
+    server.close(done);
+  } else {
+    done();
+  }
 });
 
 describe('View Post API Endpoints', () => {
   it('GET /posts/:id should return 200/404 but NOT 500', async () => {
-
     const res = await request(app).get('/posts/1'); 
     expect(res.status).not.toBe(500);
   });
