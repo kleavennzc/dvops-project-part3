@@ -62,7 +62,7 @@ pipeline {
         }
         failure {
             mail bcc: '', 
-                 body: " The pipeline for DevOps Bloggers has FAILED.\n\ncheck the Jenkins Console Output to debug the error.\nProject: ${env.JOB_NAME}", 
+                 body: " The pipeline for DevOps Bloggers has FAILED.\nProject: ${env.JOB_NAME}", 
                  cc: '', 
                  from: '', 
                  replyTo: '', 
